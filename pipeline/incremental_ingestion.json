@@ -5,6 +5,8 @@
 			{
 				"name": "azureSqlToLake",
 				"type": "Copy",
+				"state": "Inactive",
+				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "last_cdc",
@@ -109,7 +111,10 @@
 						"type": "DatasetReference",
 						"parameters": {
 							"container": "bronze",
-							"folder": "cdc",
+							"folder": {
+								"value": "@concat('cdc/cdc_',pipeline().parameters.table)",
+								"type": "Expression"
+							},
 							"file": "cdc.json"
 						}
 					},
@@ -246,7 +251,10 @@
 									"type": "DatasetReference",
 									"parameters": {
 										"container": "bronze",
-										"folder": "cdc",
+										"folder": {
+											"value": "@concat('cdc/cdc_',pipeline().parameters.table)",
+											"type": "Expression"
+										},
 										"file": "empty.json"
 									}
 								}
@@ -304,6 +312,9 @@
 				"type": "string"
 			},
 			"cdc_col": {
+				"type": "string"
+			},
+			"from_date": {
 				"type": "string"
 			}
 		},
