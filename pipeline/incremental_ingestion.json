@@ -5,8 +5,6 @@
 			{
 				"name": "azureSqlToLake",
 				"type": "Copy",
-				"state": "Inactive",
-				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
 						"activity": "last_cdc",
@@ -252,7 +250,7 @@
 									"parameters": {
 										"container": "bronze",
 										"folder": {
-											"value": "@concat('cdc/cdc_',pipeline().parameters.table)",
+											"value": "@concat('cdc_',pipeline().parameters.table)",
 											"type": "Expression"
 										},
 										"file": "empty.json"
