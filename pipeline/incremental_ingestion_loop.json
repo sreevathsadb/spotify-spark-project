@@ -323,10 +323,8 @@
 					{
 						"activity": "forEachIncremental",
 						"dependencyConditions": [
-							"Skipped",
-							"Failed",
 							"Succeeded",
-							"Completed"
+							"Failed"
 						]
 					}
 				],
